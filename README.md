@@ -1,7 +1,3 @@
-Of course. A great README is crucial for teamwork, especially in a hackathon. You've done the hard work of getting the foundation laid; now let's document it so your team can hit the ground running.
-
-Here is a complete `README.md` file. Just copy and paste this into the `README.md` file in your project's root directory.
-
 -----
 
 ````markdown
