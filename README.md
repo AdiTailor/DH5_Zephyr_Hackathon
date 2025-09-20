@@ -1,43 +1,117 @@
 -----
 
 ````markdown
-# MindSpace 🧠✨
 
-*A safe space for self-reflection and anonymous peer support. Built for the DH5 Zephyr Hackathon.*
+# Mindspace App
 
----
+Mindspace is a modern web application designed to help users track their mental well-being, analyze mood trends, engage with a supportive community, and maintain a personal journal. Built with Next.js, TypeScript, and Supabase, Mindspace offers a seamless experience for self-reflection and growth.
 
-## 🚀 Problem Statement
-
-Mental health challenges are often hidden due to stigma. Students need a safe, anonymous, and accessible digital space to reflect on their thoughts, connect with peers, and seek support without fear of judgment. MindSpace is a full-stack web application designed to be that space.
-
-## 🛠️ Tech Stack
-
-Our stack is chosen for rapid development, performance, and a modern user experience.
-
-| Technology      | Purpose                               |
-| --------------- | ------------------------------------- |
-| **Next.js** | Full-stack React Framework            |
-| **React** | UI Library                            |
-| **TypeScript** | Static Typing for Code Quality        |
-| **Tailwind CSS**| Utility-First CSS Framework         |
-| **Shadcn/UI** | Re-usable UI Components               |
-| **Supabase** | Backend-as-a-Service (Auth & DB)      |
-
-## ✅ Current Status (As of 1:30 AM Saturday)
-
-The foundation is solid and the core user loop is **complete**. Here's what's working right now:
-
-* **Project Setup:** The Next.js project is fully configured with all necessary dependencies.
-* **Database Schema:** All tables (`profiles`, `journal_entries`, `community_posts`) are created and configured in Supabase with Row Level Security.
-* **Authentication:** A complete authentication flow is working. Users can sign in anonymously, and the session is managed securely.
-* **Journal Feature:** The private journaling feature is **fully functional**. Logged-in users can create new journal entries with mood selections and view their past entries.
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Environment Variables](#environment-variables)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 🏁 Getting Started: A Guide for the Team
+## Features
+- **Dashboard**: Visualize your mood trends and statistics with interactive charts.
+- **Journal**: Write daily entries, reflect, and review your progress.
+- **Community**: Share posts, interact with others, and find support.
+- **Analysis**: Get AI-powered sentiment analysis of your journal entries.
+- **Live Chat**: Communicate in real time with online users.
+- **Authentication**: Secure login and registration flows.
 
-Follow these steps to get the project running on your local machine.
+## Tech Stack
+- **Frontend**: Next.js, React, TypeScript
+- **Styling**: CSS Modules, PostCSS
+- **Backend**: Supabase (for authentication and database)
+- **AI**: Custom sentiment analysis utilities
+- **Linting**: ESLint
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or yarn
+- Supabase account (for backend services)
+
+### Installation
+1. Clone the repository:
+  ```bash
+  git clone https://github.com/AdiTailor/DH5_Zephyr_Hackathon.git
+  cd DH5_Zephyr_Hackathon/mindspace-app
+  ```
+2. Install dependencies:
+  ```bash
+  npm install
+  # or
+  yarn install
+  ```
+3. Set up environment variables:
+  - Copy `.env.local.example` to `.env.local` and fill in your Supabase credentials and other secrets.
+
+4. Run the development server:
+  ```bash
+  npm run dev
+  # or
+  yarn dev
+  ```
+  The app will be available at [http://localhost:3000](http://localhost:3000).
+
+## Project Structure
+```
+mindspace-app/
+├── app/                # Next.js app directory (routing, pages)
+│   ├── dashboard/      # Dashboard charts and stats
+│   ├── journal/        # Journal entry pages
+│   ├── community/      # Community posts and actions
+│   └── chat/           # Live chat feature
+├── components/         # Reusable React components
+│   ├── features/       # Feature-specific components
+│   └── shared/         # Shared UI elements
+├── lib/                # Utility functions and API clients
+│   ├── ai/             # Sentiment analysis logic
+│   └── supabase/       # Supabase client/server helpers
+├── public/             # Static assets
+├── styles/             # Global styles
+├── package.json        # Project metadata and scripts
+└── ...
+```
+
+## Environment Variables
+Create a `.env.local` file in the `mindspace-app` directory. Example:
+```
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+Refer to Supabase docs for details on obtaining these keys.
+
+## Scripts
+- `dev`: Start the development server
+- `build`: Build the app for production
+- `start`: Start the production server
+- `lint`: Run ESLint
+
+## Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Open a pull request
+
+## License
+This project is licensed under the MIT License.
+
+---
+
+For questions or feedback, feel free to open an issue or reach out to the maintainers.
 
 ### 1. Clone the Repository
 
@@ -85,4 +159,5 @@ The application should now be running at `http://localhost:3000`.
 
 -----
 
-
+```
+```
