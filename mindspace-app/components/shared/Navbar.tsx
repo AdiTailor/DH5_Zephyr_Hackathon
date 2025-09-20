@@ -14,6 +14,7 @@ export default function Navbar({ user, alias }: { user: User; alias: string }) {
     { href: "/dashboard", label: "Dashboard", icon: "📊" },
     { href: "/journal", label: "Journal", icon: "📝" },
     { href: "/community", label: "Community", icon: "👥" },
+    { href: "/chat", label: "Chat", icon: "💬" },
   ];
 
   const handleLogout = async () => {
