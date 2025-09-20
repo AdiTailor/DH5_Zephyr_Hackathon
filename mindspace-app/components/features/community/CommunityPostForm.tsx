@@ -29,7 +29,7 @@ export default function CommunityPostForm({
             className="min-h-[100px]"
           />
           <div className="flex justify-end">
-            <Button type="submit">Share Anonymously</Button>
+            <Button type="submit">Share</Button>
           </div>
         </form>
       </CardContent>
