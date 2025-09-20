@@ -13,9 +13,21 @@ export default function JournalForm({
 }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [selectedMood, setSelectedMood] = useState<number>(3);
+  const [sentiment, setSentiment] = useState<number | null>(null);
 
   const handleAction = async (formData: FormData) => {
-    formData.append('mood', selectedMood.toString());
+    const text = formData.get("content") as string;
+
+    // Call sentiment API
+    const res = await fetch("/api/predict-sentiment", {
+      method: "POST",
+      body: JSON.stringify({ text }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    setSentiment(data.sentiment);
+
+    formData.append("mood", selectedMood.toString());
     await addEntryAction(formData);
     formRef.current?.reset();
     toast.success("Journal entry saved!");
@@ -39,6 +51,11 @@ export default function JournalForm({
             <Button type="submit" className="w-full sm:w-auto">Save Entry</Button>
           </div>
         </form>
+        {sentiment !== null && (
+          <div className="mt-2 text-sm text-gray-700">
+            Predicted Sentiment: {sentiment}
+          </div>
+        )}
       </CardContent>
     </Card>
   );
