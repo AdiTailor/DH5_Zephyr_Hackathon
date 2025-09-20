@@ -3,19 +3,30 @@ import { revalidatePath } from "next/cache";
 import CommunityPostForm from "@/components/features/community/CommunityPostForm";
 import PostCard from "@/components/features/community/PostCard";
 
-// --- SERVER ACTION (unchanged) ---
+// --- SERVER ACTION (store username directly) ---
 async function addPost(formData: FormData) {
   "use server";
   
   const content = formData.get("content") as string;
-  const supabase = createClient();
-  const { data: { user } } = await (await supabase).auth.getUser();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   if (!content || !user) return;
 
-  const { error } = await (await supabase)
+  // Get user's alias (same principle as navbar)
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('alias')
+    .eq('id', user.id)
+    .single();
+
+  const { error } = await supabase
     .from("community_posts")
-    .insert({ content, user_id: user.id });
+    .insert({ 
+      content, 
+      user_id: user.id,
+      author_name: profile?.alias ?? 'Anonymous' // Store username directly!
+    });
 
   if (error) {
     console.error("Error adding post:", error);
@@ -27,6 +38,7 @@ async function addPost(formData: FormData) {
 export default async function CommunityPage() {
   const supabase = await createClient();
 
+  // Simple query - no need for JOIN anymore
   const { data: posts, error } = await supabase
     .from("community_posts")
     .select(`
@@ -34,7 +46,7 @@ export default async function CommunityPage() {
       created_at,
       content,
       likes_count,
-      profiles ( alias )
+      author_name
     `)
     .order("created_at", { ascending: false });
 
@@ -125,7 +137,7 @@ export default async function CommunityPage() {
               </h1>
               
               <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed animate-fade-in-up-delayed">
-                Share your thoughts anonymously with our supportive community. 
+                Share your thoughts with our supportive community. 
                 <span className="inline-flex items-center gap-1 ml-2">
                   Every voice matters 
                   <span className="animate-bounce">💙</span>
@@ -195,10 +207,8 @@ export default async function CommunityPage() {
             {posts && posts.length > 0 ? (
               <div className="space-y-4">
                 {posts.map((post, index) => {
-                  const profiles = post.profiles as { alias: string }[] | null;
-                  const authorAlias = profiles && Array.isArray(profiles) && profiles.length > 0
-                    ? profiles[0].alias ?? 'Anonymous'
-                    : 'Anonymous';
+                  // Simple - username is already stored in the post!
+                  const authorAlias = post.author_name ?? 'Anonymous';
 
                   return (
                     <div
@@ -210,7 +220,10 @@ export default async function CommunityPage() {
                       }}
                     >
                       <div className="bg-white/70 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                        <PostCard post={post} authorAlias={authorAlias} />
+                        <PostCard 
+                          post={post} 
+                          authorAlias={authorAlias}
+                        />
                       </div>
                     </div>
                   );
