@@ -67,8 +67,8 @@ The project needs to connect to our Supabase backend.
 <!-- end list -->
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL='PASTE_THE_SUPABASE_URL_HERE'
-NEXT_PUBLIC_SUPABASE_ANON_KEY='PASTE_THE_SUPABASE_ANON_KEY_HERE'
+NEXT_PUBLIC_SUPABASE_URL='https://kxlaxuwzrrfzrgwmxcsi.supabase.co'
+NEXT_PUBLIC_SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4bGF4dXd6cnJmenJnd214Y3NpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzMDQ0NTgsImV4cCI6MjA3Mzg4MDQ1OH0.tuwyWyNudZzptWh3_CO6YEQUxKsnjbDYUoSKBPwP4H0'
 ```
 
 **Note:** The app will not start without this file.
