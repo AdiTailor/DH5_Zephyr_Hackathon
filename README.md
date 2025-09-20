@@ -85,35 +85,4 @@ The application should now be running at `http://localhost:3000`.
 
 -----
 
-## 🗺️ Project Roadmap & Next Steps
 
-Here is the plan for the rest of the hackathon. Let's divide and conquer these features.
-
-### Priority 1: Community Feed Feature
-
-  * **Goal:** Allow users to post anonymous messages and interact with them.
-  * **Tasks:**
-      * `[ ]` **Build the UI:** Create the `(app)/community/page.tsx` file.
-      * `[ ]` **Create Components:** Build `CommunityPostForm.tsx` and `PostCard.tsx` inside `components/features/community/`.
-      * `[ ]` **Implement Server Action:** Create a server action to save new posts to the `community_posts` table in Supabase.
-      * `[ ]` **Fetch and Display Posts:** Load all posts from Supabase and display them on the page.
-
-### Priority 2: Dashboard Visualization
-
-  * **Goal:** Show users insightful data about their mood trends.
-  * **Tasks:**
-      * `[ ]` **Build the UI:** Flesh out the `(app)/dashboard/page.tsx` file.
-      * `[ ]` **Data Fetching:** Create the server-side logic to fetch and aggregate mood data from the `journal_entries` table.
-      * `[ ]` **Create Chart Component:** Build a `MoodChart.tsx` component using `recharts` to display a line or bar chart of mood history.
-
-### Stretch Goal: AI Sentiment Analysis
-
-  * **Goal:** Provide automated insights on journal entries.
-  * **Tasks:**
-      * `[ ]` **Python Microservice:** Set up a simple Flask API that takes text and returns a sentiment score using a library like Hugging Face's `transformers`.
-      * `[ ]` **API Integration:** When a journal entry is saved, call this new microservice from our Next.js backend and store the sentiment score in the database.
-
-Let's get some rest and hit this hard in the morning. We've got a great foundation. Let's win this\!
-
-```
-```
